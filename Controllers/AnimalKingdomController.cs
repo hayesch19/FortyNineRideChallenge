@@ -7,28 +7,28 @@ namespace FortyNineRideChallenge.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class MagicKingdomRidesController : ControllerBase
+  public class AnimalKingdomRidesController : ControllerBase
   {
     private DatabaseContext context;
-    public MagicKingdomRidesController(DatabaseContext _context)
+    public AnimalKingdomRidesController(DatabaseContext _context)
     {
       this.context = _context;
     }
 
     // Add Ride
     [HttpPost]
-    public ActionResult<MagicKingdomRides> CreateEntry([FromBody] MagicKingdomRides entry)
+    public ActionResult<AnimalKingdomRides> CreateEntry([FromBody] AnimalKingdomRides entry)
     {
-      context.MagicKingdomRide.Add(entry);
+      context.AnimalKingdomRide.Add(entry);
       context.SaveChanges();
       return entry;
     }
 
     // Get All Rides
     [HttpGet]
-    public ActionResult<IEnumerable<MagicKingdomRides>> GetAllItems()
+    public ActionResult<IEnumerable<AnimalKingdomRides>> GetAllItems()
     {
-      var rides = context.MagicKingdomRide.OrderByDescending(ride => ride.Id);
+      var rides = context.AnimalKingdomRide.OrderByDescending(ride => ride.Id);
       return rides.ToList();
     }
 
@@ -49,7 +49,7 @@ namespace FortyNineRideChallenge.Controllers
 
     // Update Ride
     [HttpPut("{id}")]
-    public ActionResult<MagicKingdomRides> UpdateRide(int id, [FromBody]MagicKingdomRides newDetails)
+    public ActionResult<AnimalKingdomRides> UpdateRide(int id, [FromBody]AnimalKingdomRides newDetails)
     {
       if (id != newDetails.Id)
       {
@@ -62,10 +62,10 @@ namespace FortyNineRideChallenge.Controllers
 
     // Delete A Ride
     [HttpDelete("{id}")]
-    public ActionResult<MagicKingdomRides> DeleteEntry([FromBody]MagicKingdomRides entry, int id)
+    public ActionResult<AnimalKingdomRides> DeleteEntry([FromBody]AnimalKingdomRides entry, int id)
     {
-      var rideToDelete = context.MagicKingdomRide.FirstOrDefault(ride => ride.Id == id);
-      context.MagicKingdomRide.Remove(rideToDelete);
+      var rideToDelete = context.AnimalKingdomRide.FirstOrDefault(ride => ride.Id == id);
+      context.AnimalKingdomRide.Remove(rideToDelete);
       context.SaveChanges();
       return rideToDelete;
     }
