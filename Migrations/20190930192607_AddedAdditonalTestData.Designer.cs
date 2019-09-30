@@ -3,15 +3,17 @@ using System;
 using FortyNineRideChallenge;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace sdgreacttemplate.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190930192607_AddedAdditonalTestData")]
+    partial class AddedAdditonalTestData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +37,6 @@ namespace sdgreacttemplate.Migrations
                         {
                             Id = -1,
                             ParkName = "Magic Kingdom"
-                        },
-                        new
-                        {
-                            Id = -2,
-                            ParkName = "Animal Kingdom"
-                        },
-                        new
-                        {
-                            Id = -3,
-                            ParkName = "Hollywood Studios"
-                        },
-                        new
-                        {
-                            Id = -4,
-                            ParkName = "Epcot"
                         });
                 });
 
