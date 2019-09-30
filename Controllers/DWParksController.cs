@@ -69,5 +69,26 @@ namespace FortyNineRideChallenge.Controllers
       context.SaveChanges();
       return parkToDelete;
     }
+
+    // Add Park Ride
+    [HttpPost("{DisneyWorldParkId}/parkride")]
+    public ActionResult<DisneyWorldRides> CreateRide(int DisneyWorldParkId, [FromBody]DisneyWorldRides disneyWorldRides)
+    {
+      var park = context.DisneyWorldPark.FirstOrDefault(p => p.Id == DisneyWorldParkId);
+      if (park == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        disneyWorldRides.DisneyWorldParkId = DisneyWorldParkId;
+        context.DisneyWorldRide.Add(disneyWorldRides);
+        context.SaveChanges();
+        return Ok(new
+        {
+
+        });
+      }
+    }
   }
 }

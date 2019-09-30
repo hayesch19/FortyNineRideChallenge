@@ -1,6 +1,6 @@
 import React from 'react'
 import StopwatchDisplay from './StopwatchDisplay.jsx'
-import StopwatchHistory from './StopwatchHistory.jsx'
+// import StopwatchHistory from './StopwatchHistory.jsx'
 
 class Stopwatch extends React.Component {
   constructor(props) {

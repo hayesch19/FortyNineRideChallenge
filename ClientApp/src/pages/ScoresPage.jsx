@@ -1,5 +1,5 @@
 import React from 'react'
-import StopwatchHistory from '../components/StopwatchHistory'
+// import StopwatchHistory from '../components/StopwatchHistory'
 
 const ScoresPage = () => {
   return (

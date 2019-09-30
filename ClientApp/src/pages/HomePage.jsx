@@ -3,15 +3,15 @@ import Stopwatch from '../components/Stopwatch'
 import axios from 'axios'
 
 const HomePage = () => {
-  const [magicKingdomRide, setMagicKingdomRide] = useState([])
-  const fetchMagicKingdomData = async () => {
-    const resp = await axios.get('https://localhost:5001/api/MagicKingdomRides')
-    setMagicKingdomRide(resp.data.rideName)
+  const [parkRides, setParkRides] = useState([])
+  const fetchRidesData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/DWRides')
+    setParkRides(resp.data.rideName)
     console.log(resp.data, 'Magic Kingdom')
   }
 
   useEffect(() => {
-    fetchMagicKingdomData()
+    fetchRidesData()
   }, [])
 
   return (
