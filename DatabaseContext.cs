@@ -58,6 +58,15 @@ namespace FortyNineRideChallenge
       // Disney World Rides Data
       modelBuilder.Entity<DisneyWorldRides>().HasData(new DisneyWorldRides
       { Id = -1, DisneyWorldParkId = -1, RideName = "Main Street Vehicles" });
+
+      modelBuilder.Entity<DisneyWorldRides>().HasData(new DisneyWorldRides
+      { Id = -2, DisneyWorldParkId = -2, RideName = "Kilimanjaro Safari" });
+
+      modelBuilder.Entity<DisneyWorldRides>().HasData(new DisneyWorldRides
+      { Id = -3, DisneyWorldParkId = -3, RideName = "Toy Story Midway Mania" });
+
+      modelBuilder.Entity<DisneyWorldRides>().HasData(new DisneyWorldRides
+      { Id = -4, DisneyWorldParkId = -4, RideName = "Spaceship Earth" });
     }
     public DbSet<DisneyWorldParks> DisneyWorldPark { get; set; }
 

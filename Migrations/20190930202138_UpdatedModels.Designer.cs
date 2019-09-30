@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace sdgreacttemplate.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190930192607_AddedAdditonalTestData")]
-    partial class AddedAdditonalTestData
+    [Migration("20190930202138_UpdatedModels")]
+    partial class UpdatedModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,21 @@ namespace sdgreacttemplate.Migrations
                         {
                             Id = -1,
                             ParkName = "Magic Kingdom"
+                        },
+                        new
+                        {
+                            Id = -2,
+                            ParkName = "Animal Kingdom"
+                        },
+                        new
+                        {
+                            Id = -3,
+                            ParkName = "Hollywood Studios"
+                        },
+                        new
+                        {
+                            Id = -4,
+                            ParkName = "Epcot"
                         });
                 });
 
@@ -45,13 +60,11 @@ namespace sdgreacttemplate.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Complete");
+                    b.Property<bool>("Complete");
 
                     b.Property<int>("DisneyWorldParkId");
 
                     b.Property<int?>("DisneyWorldParksId");
-
-                    b.Property<string>("Incomplete");
 
                     b.Property<string>("RideName");
 
@@ -65,8 +78,30 @@ namespace sdgreacttemplate.Migrations
                         new
                         {
                             Id = -1,
+                            Complete = false,
                             DisneyWorldParkId = -1,
                             RideName = "Main Street Vehicles"
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Complete = false,
+                            DisneyWorldParkId = -2,
+                            RideName = "Kilimanjaro Safari"
+                        },
+                        new
+                        {
+                            Id = -3,
+                            Complete = false,
+                            DisneyWorldParkId = -3,
+                            RideName = "Toy Story Midway Mania"
+                        },
+                        new
+                        {
+                            Id = -4,
+                            Complete = false,
+                            DisneyWorldParkId = -4,
+                            RideName = "Spaceship Earth"
                         });
                 });
 

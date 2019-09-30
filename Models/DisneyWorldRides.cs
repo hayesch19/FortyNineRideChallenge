@@ -4,8 +4,7 @@ namespace FortyNineRideChallenge.Models
   {
     public int Id { get; set; }
     public string RideName { get; set; }
-    public string Complete { get; set; }
-    public string Incomplete { get; set; }
+    public bool Complete { get; set; }
 
 
     public int DisneyWorldParkId { get; set; }

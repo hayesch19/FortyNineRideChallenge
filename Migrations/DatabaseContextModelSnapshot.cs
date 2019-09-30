@@ -58,13 +58,11 @@ namespace sdgreacttemplate.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Complete");
+                    b.Property<bool>("Complete");
 
                     b.Property<int>("DisneyWorldParkId");
 
                     b.Property<int?>("DisneyWorldParksId");
-
-                    b.Property<string>("Incomplete");
 
                     b.Property<string>("RideName");
 
@@ -78,8 +76,30 @@ namespace sdgreacttemplate.Migrations
                         new
                         {
                             Id = -1,
+                            Complete = false,
                             DisneyWorldParkId = -1,
                             RideName = "Main Street Vehicles"
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Complete = false,
+                            DisneyWorldParkId = -2,
+                            RideName = "Kilimanjaro Safari"
+                        },
+                        new
+                        {
+                            Id = -3,
+                            Complete = false,
+                            DisneyWorldParkId = -3,
+                            RideName = "Toy Story Midway Mania"
+                        },
+                        new
+                        {
+                            Id = -4,
+                            Complete = false,
+                            DisneyWorldParkId = -4,
+                            RideName = "Spaceship Earth"
                         });
                 });
 
