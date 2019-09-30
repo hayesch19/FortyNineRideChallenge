@@ -9,14 +9,10 @@ const HeaderNav = () => {
           <h1>49 Ride Challenge</h1>
         </header>
       </div>
-      <div className="top-right"></div>
-      <div className="dropdown">
-        <button className="dropbtn">Menu</button>
-        <div className="dropdown-content">
-          <Link to="/">Home</Link>
-          <Link to="/scores">Scores</Link>
-          <Link to="/rules">Rules</Link>
-        </div>
+      <div className="top-right">
+        <Link to="/">Home</Link>
+        <Link to="/scores">Scores</Link>
+        <Link to="/rules">Rules</Link>
       </div>
     </section>
   )

@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Stopwatch from '../components/Stopwatch'
+import axios from 'axios'
 
 const HomePage = () => {
+  const [magicKingdomRide, setMagicKingdomRide] = useState([])
+  const fetchMagicKingdomData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/MagicKingdomRides')
+    setMagicKingdomRide(resp.data.rideName)
+    console.log(resp.data, 'Magic Kingdom')
+  }
+
+  useEffect(() => {
+    fetchMagicKingdomData()
+  }, [])
+
   return (
     <main>
       <section>
@@ -11,16 +23,18 @@ const HomePage = () => {
         <section className="ride-list-area">
           <div className="magic-kingdom-rides">
             <h2>Magic Kingdom</h2>
-            <div className="dropdown">
-              <button className="dropbtn">Select Ride</button>
-              <div className="dropdown-content">
-                <p>Ride 1</p>
-                <p>Ride 2</p>
-                <p>Ride 3</p>
-              </div>
-            </div>
             <p>Rides Display Here</p>
+          </div>
+          <div className="animal-kingdom-rides">
+            <h2>Animal Kingdom</h2>
             <p>Rides Display Here</p>
+          </div>
+          <div className="hollywood-studios-rides">
+            <h2>Hollywood Studios</h2>
+            <p>Rides Display Here</p>
+          </div>
+          <div className="epcot-rides">
+            <h2>Epcot</h2>
             <p>Rides Display Here</p>
           </div>
         </section>
