@@ -44,10 +44,9 @@ namespace FortyNineRideChallenge
     {
       modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
     }
-    public DbSet<MagicKingdomRides> MagicKingdomRide { get; set; }
-    public DbSet<AnimalKingdomRides> AnimalKingdomRide { get; set; }
-    public DbSet<HollywoodStudiosRides> HollywoodStudiosRide { get; set; }
-    public DbSet<EpcotRides> EpcotRide { get; set; }
+    public DbSet<DisneyWorldParks> DisneyWorldPark { get; set; }
+
+    public DbSet<DisneyWorldRides> DisneyWorldRide { get; set; }
 
   }
 }

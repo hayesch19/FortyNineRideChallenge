@@ -2,15 +2,17 @@
 using FortyNineRideChallenge;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace sdgreacttemplate.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190930142828_UpdatedModels")]
+    partial class UpdatedModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,22 +30,6 @@ namespace sdgreacttemplate.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DisneyWorldPark");
-                });
-
-            modelBuilder.Entity("FortyNineRideChallenge.Models.DisneyWorldRides", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Complete");
-
-                    b.Property<string>("Incomplete");
-
-                    b.Property<string>("RideName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DisneyWorldRide");
                 });
 #pragma warning restore 612, 618
         }
