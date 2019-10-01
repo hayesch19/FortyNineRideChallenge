@@ -3,15 +3,39 @@ import Stopwatch from '../components/Stopwatch'
 import axios from 'axios'
 
 const HomePage = () => {
-  const [parkRides, setParkRides] = useState([])
-  const fetchRidesData = async () => {
-    const resp = await axios.get('https://localhost:5001/api/DWRides')
-    setParkRides(resp.data)
-    console.log(resp.data, 'Ride List')
+  const [magicKingdomRides, setMagicKingdomRides] = useState([])
+  const fetchMagicKingdomData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/DWParks/-1/rides')
+    setMagicKingdomRides(resp.data)
+    console.log(resp.data, 'Magic Kingdom')
+  }
+
+  const [animalKingdomRides, setAnimalKingdomRides] = useState([])
+  const fetchAnimalKingdomData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/DWParks/-2/rides')
+    setAnimalKingdomRides(resp.data)
+    console.log(resp.data, 'Animal Kingdom')
+  }
+
+  const [hollywoodStudiosRides, setHollywoodStudiosRides] = useState([])
+  const fetchHollywoodStudiosData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/DWParks/-3/rides')
+    setHollywoodStudiosRides(resp.data)
+    console.log(resp.data, 'Hollywood Studios')
+  }
+
+  const [epcotRides, setEpcotRides] = useState([])
+  const fetchEpcotData = async () => {
+    const resp = await axios.get('https://localhost:5001/api/DWParks/-4/rides')
+    setEpcotRides(resp.data)
+    console.log(resp.data, 'Epcot')
   }
 
   useEffect(() => {
-    fetchRidesData()
+    fetchMagicKingdomData()
+    fetchAnimalKingdomData()
+    fetchHollywoodStudiosData()
+    fetchEpcotData()
   }, [])
 
   return (
@@ -24,22 +48,34 @@ const HomePage = () => {
           <div className="magic-kingdom-rides">
             <h2>Magic Kingdom</h2>
             <section>
-              {parkRides.map((ride, i) => {
+              {magicKingdomRides.map((ride, i) => {
                 return <p key={i}>{ride.rideName}</p>
               })}
             </section>
           </div>
           <div className="animal-kingdom-rides">
             <h2>Animal Kingdom</h2>
-            <p>Rides Display Here</p>
+            <section>
+              {animalKingdomRides.map((ride, i) => {
+                return <p key={i}>{ride.rideName}</p>
+              })}
+            </section>
           </div>
           <div className="hollywood-studios-rides">
             <h2>Hollywood Studios</h2>
-            <p>Rides Display Here</p>
+            <section>
+              {hollywoodStudiosRides.map((ride, i) => {
+                return <p key={i}>{ride.rideName}</p>
+              })}
+            </section>
           </div>
           <div className="epcot-rides">
             <h2>Epcot</h2>
-            <p>Rides Display Here</p>
+            <section>
+              {epcotRides.map((ride, i) => {
+                return <p key={i}>{ride.rideName}</p>
+              })}
+            </section>
           </div>
         </section>
       </section>

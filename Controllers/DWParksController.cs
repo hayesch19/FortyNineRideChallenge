@@ -90,5 +90,20 @@ namespace FortyNineRideChallenge.Controllers
         });
       }
     }
+
+    // Get Park Specific Rides
+    [HttpGet("{disneyWorldParkId}/rides")]
+    public ActionResult GetParkRides(int disneyWorldParkId)
+    {
+      var ride = context.DisneyWorldRide.Where(w => w.DisneyWorldParkId == disneyWorldParkId);
+      if (ride == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        return Ok(ride);
+      }
+    }
   }
 }
