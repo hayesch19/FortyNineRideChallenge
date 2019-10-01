@@ -6,8 +6,8 @@ const HomePage = () => {
   const [parkRides, setParkRides] = useState([])
   const fetchRidesData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWRides')
-    setParkRides(resp.data.rideName)
-    console.log(resp.data, 'Magic Kingdom')
+    setParkRides(resp.data)
+    console.log(resp.data, 'Ride List')
   }
 
   useEffect(() => {
@@ -23,7 +23,11 @@ const HomePage = () => {
         <section className="ride-list-area">
           <div className="magic-kingdom-rides">
             <h2>Magic Kingdom</h2>
-            <p>Rides Display Here</p>
+            <section>
+              {parkRides.map((ride, i) => {
+                return <p key={i}>{ride.rideName}</p>
+              })}
+            </section>
           </div>
           <div className="animal-kingdom-rides">
             <h2>Animal Kingdom</h2>
