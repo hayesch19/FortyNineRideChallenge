@@ -49,7 +49,12 @@ const HomePage = () => {
             <h2>Magic Kingdom</h2>
             <section>
               {magicKingdomRides.map((ride, i) => {
-                return <p key={i}>{ride.rideName}</p>
+                return (
+                  <p key={i}>
+                    {ride.rideName}
+                    <button>Submit</button>
+                  </p>
+                )
               })}
             </section>
           </div>
@@ -57,7 +62,12 @@ const HomePage = () => {
             <h2>Animal Kingdom</h2>
             <section>
               {animalKingdomRides.map((ride, i) => {
-                return <p key={i}>{ride.rideName}</p>
+                return (
+                  <p key={i}>
+                    {ride.rideName}
+                    <button>Submit</button>
+                  </p>
+                )
               })}
             </section>
           </div>
@@ -65,7 +75,12 @@ const HomePage = () => {
             <h2>Hollywood Studios</h2>
             <section>
               {hollywoodStudiosRides.map((ride, i) => {
-                return <p key={i}>{ride.rideName}</p>
+                return (
+                  <p key={i}>
+                    {ride.rideName}
+                    <button>Submit</button>
+                  </p>
+                )
               })}
             </section>
           </div>
@@ -73,7 +88,12 @@ const HomePage = () => {
             <h2>Epcot</h2>
             <section>
               {epcotRides.map((ride, i) => {
-                return <p key={i}>{ride.rideName}</p>
+                return (
+                  <p key={i}>
+                    {ride.rideName}
+                    <button>Submit</button>
+                  </p>
+                )
               })}
             </section>
           </div>

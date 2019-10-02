@@ -43,6 +43,11 @@ li {
   padding-left: 2rem;
 }
 
+a {
+  display: flex;
+  align-content: flex-end;
+}
+
 .timer-area {
   text-align: center;
 }
