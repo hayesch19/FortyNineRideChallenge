@@ -43,9 +43,8 @@ li {
   padding-left: 2rem;
 }
 
-a {
-  display: flex;
-  align-content: flex-end;
+.magic-kingdom-ride {
+  padding: 0.3rem;
 }
 
 .timer-area {

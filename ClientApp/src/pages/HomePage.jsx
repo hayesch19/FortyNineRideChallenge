@@ -7,28 +7,28 @@ const HomePage = () => {
   const fetchMagicKingdomData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-1/rides')
     setMagicKingdomRides(resp.data)
-    console.log(resp.data, 'Magic Kingdom')
+    console.log(resp.data)
   }
 
   const [animalKingdomRides, setAnimalKingdomRides] = useState([])
   const fetchAnimalKingdomData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-2/rides')
     setAnimalKingdomRides(resp.data)
-    console.log(resp.data, 'Animal Kingdom')
+    console.log(resp.data)
   }
 
   const [hollywoodStudiosRides, setHollywoodStudiosRides] = useState([])
   const fetchHollywoodStudiosData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-3/rides')
     setHollywoodStudiosRides(resp.data)
-    console.log(resp.data, 'Hollywood Studios')
+    console.log(resp.data)
   }
 
   const [epcotRides, setEpcotRides] = useState([])
   const fetchEpcotData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-4/rides')
     setEpcotRides(resp.data)
-    console.log(resp.data, 'Epcot')
+    console.log(resp.data)
   }
 
   useEffect(() => {
@@ -37,6 +37,10 @@ const HomePage = () => {
     fetchHollywoodStudiosData()
     fetchEpcotData()
   }, [])
+
+  const rideClicked = ride => {
+    console.log(ride)
+  }
 
   return (
     <main>
@@ -51,8 +55,13 @@ const HomePage = () => {
               {magicKingdomRides.map((ride, i) => {
                 return (
                   <p key={i}>
-                    {ride.rideName}
-                    <button>Submit</button>
+                    {ride.rideName} <span></span>
+                    <button
+                      className="ride-btn"
+                      onClick={() => rideClicked(ride)}
+                    >
+                      Submit
+                    </button>
                   </p>
                 )
               })}
@@ -64,8 +73,13 @@ const HomePage = () => {
               {animalKingdomRides.map((ride, i) => {
                 return (
                   <p key={i}>
-                    {ride.rideName}
-                    <button>Submit</button>
+                    {ride.rideName} <span></span>
+                    <button
+                      className="ride-btn"
+                      onClick={() => rideClicked(ride)}
+                    >
+                      Submit
+                    </button>
                   </p>
                 )
               })}
@@ -77,8 +91,13 @@ const HomePage = () => {
               {hollywoodStudiosRides.map((ride, i) => {
                 return (
                   <p key={i}>
-                    {ride.rideName}
-                    <button>Submit</button>
+                    {ride.rideName} <span></span>
+                    <button
+                      className="ride-btn"
+                      onClick={() => rideClicked(ride)}
+                    >
+                      Submit
+                    </button>
                   </p>
                 )
               })}
@@ -90,8 +109,13 @@ const HomePage = () => {
               {epcotRides.map((ride, i) => {
                 return (
                   <p key={i}>
-                    {ride.rideName}
-                    <button>Submit</button>
+                    {ride.rideName} <span></span>
+                    <button
+                      className="ride-btn"
+                      onClick={() => rideClicked(ride)}
+                    >
+                      Submit
+                    </button>
                   </p>
                 )
               })}
