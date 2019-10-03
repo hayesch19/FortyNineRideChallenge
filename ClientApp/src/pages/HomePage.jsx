@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Stopwatch from '../components/Stopwatch'
+import RideNav from '../components/RideNav'
 import axios from 'axios'
 
 const HomePage = () => {
@@ -31,30 +32,29 @@ const HomePage = () => {
     console.log(resp.data)
   }
 
-  // const [rideCompleted, setRideCompleted] = useState([])
-  // const fetchRideStatus = async () => {
-  //   const resp = await axios.get(
-  //     `https://localhost:5001/api/DWRides/${id}/completed`
-  //   )
-  //   setRideCompleted(resp.data)
-  //   console.log('Ride Completed')
-  // }
+  const [rideCompleted, setRideCompleted] = useState([])
 
   useEffect(() => {
     fetchMagicKingdomData()
     fetchAnimalKingdomData()
     fetchHollywoodStudiosData()
     fetchEpcotData()
-    // fetchRideStatus()
   }, [])
 
-  const rideClicked = ride => {
-    // setRideCompleted()
-    console.log(ride)
+  const rideClicked = async ride => {
+    const resp = await axios.patch(
+      `https://localhost:5001/api/DWRides/${ride.id}/completed`
+    )
+    setRideCompleted(resp.data)
+    ride.completed = true
+    console.log(resp.data, 'Ride Completed')
   }
 
   return (
     <main>
+      <section className="ride-navbar">
+        <RideNav />
+      </section>
       <section>
         <div className="timer-area">
           <Stopwatch />
