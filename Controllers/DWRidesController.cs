@@ -68,5 +68,22 @@ namespace FortyNineRideChallenge.Controllers
       context.SaveChanges();
       return rideToDelete;
     }
+
+    // Updated Ride Status
+    [HttpPatch("{id}/completed")]
+    public ActionResult<DisneyWorldRides> UpdateStatus(int id)
+    {
+      var status = context.DisneyWorldRide.FirstOrDefault(s => s.Id == id);
+      if (status == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        status.Complete = true;
+        context.SaveChanges();
+        return status;
+      }
+    }
   }
 }
