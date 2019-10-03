@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 const RideNav = () => {
   return (
     <div>
-      <Link to="/scores">Magic Kingdom</Link>
-      <Link to="/scores">Animal Kingdom</Link>
-      <Link to="/scores">Hollywood Studios</Link>
-      <Link to="/scores">Epcot</Link>
+      <Link to="/magickingdom">Magic Kingdom</Link>
+      <Link to="/animalkingdom">Animal Kingdom</Link>
+      <Link to="/hollywoodstudios">Hollywood Studios</Link>
+      <Link to="/epcot">Epcot</Link>
     </div>
   )
 }
