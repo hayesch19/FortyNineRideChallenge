@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Stopwatch from '../components/Stopwatch'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const MagicKingdom = () => {
+  const element = <FontAwesomeIcon icon={faCheckCircle} />
+
   const [magicKingdomRides, setMagicKingdomRides] = useState([])
   const fetchMagicKingdomData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-1/rides')
@@ -36,10 +40,10 @@ const MagicKingdom = () => {
           {magicKingdomRides.map((ride, i) => {
             return (
               <p key={i}>
-                {ride.rideName} <span></span>
                 <button className="ride-btn" onClick={() => rideClicked(ride)}>
-                  Submit
+                  {element}
                 </button>
+                {ride.rideName}
               </p>
             )
           })}

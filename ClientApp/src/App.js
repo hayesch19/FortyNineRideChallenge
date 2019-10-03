@@ -35,10 +35,3 @@ class App extends Component {
 }
 
 export default App
-
-{
-  /* <MagicKingdom />
-<AnimalKingdom />
-<HollywoodStudios />
-<Epcot /> */
-}

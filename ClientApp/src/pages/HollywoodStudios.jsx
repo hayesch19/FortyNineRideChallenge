@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Stopwatch from '../components/Stopwatch'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const HollywoodStudios = () => {
+  const element = <FontAwesomeIcon icon={faCheckCircle} />
+
   const [hollywoodStudiosRides, setHollywoodStudiosRides] = useState([])
   const fetchHollywoodStudiosData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-3/rides')
@@ -30,14 +34,14 @@ const HollywoodStudios = () => {
       </div>
       <div className="ride-list-area">
         <h2>Hollywood Studios</h2>
-        <section>
+        <section className="displayed-rides">
           {hollywoodStudiosRides.map((ride, i) => {
             return (
               <p key={i}>
-                {ride.rideName} <span></span>
                 <button className="ride-btn" onClick={() => rideClicked(ride)}>
-                  Submit
+                  {element}
                 </button>
+                {ride.rideName}
               </p>
             )
           })}

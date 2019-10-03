@@ -57,8 +57,16 @@ li {
   font-size: 1.2rem;
 }
 
-.ride-list-area {
-  text-align: center;
+.displayed-rides {
+  text-align: left;
+  padding-left: 15rem;
+  padding-top: 0.5rem;
+}
+
+.ride-btn {
+  margin-right: 1rem;
+  background-color: #18509b;
+  color: #f1f1f1;
 }
 
 .rules-area {
