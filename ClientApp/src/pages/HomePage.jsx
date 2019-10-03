@@ -31,14 +31,25 @@ const HomePage = () => {
     console.log(resp.data)
   }
 
+  // const [rideCompleted, setRideCompleted] = useState([])
+  // const fetchRideStatus = async () => {
+  //   const resp = await axios.get(
+  //     `https://localhost:5001/api/DWRides/${id}/completed`
+  //   )
+  //   setRideCompleted(resp.data)
+  //   console.log('Ride Completed')
+  // }
+
   useEffect(() => {
     fetchMagicKingdomData()
     fetchAnimalKingdomData()
     fetchHollywoodStudiosData()
     fetchEpcotData()
+    // fetchRideStatus()
   }, [])
 
   const rideClicked = ride => {
+    // setRideCompleted()
     console.log(ride)
   }
 
