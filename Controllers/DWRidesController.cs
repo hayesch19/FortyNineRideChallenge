@@ -85,5 +85,22 @@ namespace FortyNineRideChallenge.Controllers
         return status;
       }
     }
+
+    // Reset All Rides Status
+    [HttpPatch("completed")]
+    public ActionResult<DisneyWorldRides> ResetRidesStatus()
+    {
+      var status = context.DisneyWorldRide.FirstOrDefault();
+      if (status == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        status.Complete = true;
+        context.SaveChanges();
+        return status;
+      }
+    }
   }
 }

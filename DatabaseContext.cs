@@ -165,6 +165,7 @@ namespace FortyNineRideChallenge
     public DbSet<DisneyWorldParks> DisneyWorldPark { get; set; }
 
     public DbSet<DisneyWorldRides> DisneyWorldRide { get; set; }
+    public DbSet<ChallengeAttempts> ChallengeAttempt { get; set; }
 
   }
 }
