@@ -72,6 +72,7 @@ namespace FortyNineRideChallenge.Controllers
         status.TimeEnded = DateTime.Now;
         context.SaveChanges();
         return status;
+
       }
     }
 

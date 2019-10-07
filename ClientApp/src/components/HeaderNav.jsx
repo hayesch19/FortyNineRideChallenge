@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import FortyNineRideLogo from '../images/FortyNineRideLogo.png'
 
 const HeaderNav = () => {
   const element = <FontAwesomeIcon icon={faBars} />
@@ -10,7 +11,8 @@ const HeaderNav = () => {
     <section className="top-container">
       <div className="top-left">
         <header>
-          <h1>49 Ride Challenge</h1>
+          <img className="header-logo" src={FortyNineRideLogo} alt="" />
+          {/* <h1>49 Ride Challenge</h1> */}
         </header>
       </div>
       <div className="top-right">
