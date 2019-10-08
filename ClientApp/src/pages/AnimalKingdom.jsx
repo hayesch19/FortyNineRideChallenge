@@ -7,6 +7,16 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 const AnimalKingdom = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
+  const fetchCurrentAttempt = async () => {
+    const resp = await axios.get(
+      'https://localhost:5001/api/ChallengeAttempts/current'
+    )
+    console.log(resp.data, 'Current Attempt')
+  }
+  useEffect(() => {
+    fetchCurrentAttempt()
+  }, [])
+
   const [animalKingdomRides, setAnimalKingdomRides] = useState([])
   const fetchAnimalKingdomData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-2/rides')

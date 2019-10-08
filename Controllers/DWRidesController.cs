@@ -81,6 +81,10 @@ namespace FortyNineRideChallenge.Controllers
       else
       {
         status.Complete = true;
+
+        // get the attempt
+        // update the count by 1
+
         context.SaveChanges();
         return status;
       }

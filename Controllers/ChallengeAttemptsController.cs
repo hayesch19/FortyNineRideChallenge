@@ -48,6 +48,21 @@ namespace FortyNineRideChallenge.Controllers
       }
     }
 
+    // Get A Current Attempt
+    [HttpGet("current")]
+    public ActionResult GetCurrentAttempt()
+    {
+      var attempt = context.ChallengeAttempt.FirstOrDefault(a => a.TimeStarted.Date == DateTime.Today);
+      if (attempt != null)
+      {
+        return Ok(attempt);
+      }
+      else
+      {
+        return NotFound();
+      }
+    }
+
     // Delete Attempt
     [HttpDelete("{id}")]
     public ActionResult<ChallengeAttempts> DeleteRide([FromBody]ChallengeAttempts entry, int id)

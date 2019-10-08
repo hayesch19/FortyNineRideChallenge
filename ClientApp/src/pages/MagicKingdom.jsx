@@ -7,6 +7,13 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 const MagicKingdom = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
+  const fetchCurrentAttempt = async () => {
+    const resp = await axios.get(
+      'https://localhost:5001/api/ChallengeAttempts/current'
+    )
+    console.log(resp.data, 'Current Attempt')
+  }
+
   const [magicKingdomRides, setMagicKingdomRides] = useState([])
   const fetchMagicKingdomData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-1/rides')
@@ -17,6 +24,7 @@ const MagicKingdom = () => {
   const [rideCompleted, setRideCompleted] = useState([])
 
   useEffect(() => {
+    fetchCurrentAttempt()
     fetchMagicKingdomData()
   }, [])
 

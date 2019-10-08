@@ -7,6 +7,16 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 const Epcot = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
+  const fetchCurrentAttempt = async () => {
+    const resp = await axios.get(
+      'https://localhost:5001/api/ChallengeAttempts/current'
+    )
+    console.log(resp.data, 'Current Attempt')
+  }
+  useEffect(() => {
+    fetchCurrentAttempt()
+  }, [])
+
   const [epcotRides, setEpcotRides] = useState([])
   const fetchEpcotData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-4/rides')

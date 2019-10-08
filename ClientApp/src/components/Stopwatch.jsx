@@ -4,37 +4,39 @@ import axios from 'axios'
 import moment from 'moment'
 import countdown from 'countdown'
 
-export default function Stopwatch() {
+export default function Stopwatch(props) {
   const [millSeconds, setMillSeconds] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [watch, setWatch] = useState(null)
   const [timeStarted, setTimeStarted] = useState(null)
   const [displayTime, setDisplayTime] = useState('')
 
-  // Format Time & Timer
-  const formatTime = (val, ...rest) => {
-    let value = val.toString()
-    if (value.length < 2) {
-      value = '0' + value
-    }
-    if (rest[0] === 'ms' && value.length < 3) {
-      value = '0' + value
-    }
-    return value
-  }
-
   const pace = () => {
     setMillSeconds(prev => prev + 1000)
   }
   const padNumber = num => (num <= 9 ? '0' + num : num)
+  const fetchCurrentAttempt = async () => {
+    const resp = await axios.get(
+      'https://localhost:5001/api/ChallengeAttempts/current'
+    )
+    if (resp.data.timeStarted) {
+      setTimeStarted(moment(resp.data.timeStarted))
+      setIsRunning(true)
+      setWatch(setInterval(() => pace(), 1000))
+    }
+    console.log(resp.data, 'Current Attempt')
+  }
+  useEffect(() => {
+    fetchCurrentAttempt()
+  }, [])
 
   useEffect(() => {
-    console.log('-----------------')
     let raw = countdown(
       timeStarted,
       null,
       countdown.HOURS & countdown.MINUTES & countdown.SECONDS
     ).toString()
+
     if (timeStarted) {
       setDisplayTime(`${padNumber(0)}:${padNumber(0)}:${padNumber(0)}`)
 
@@ -64,17 +66,19 @@ export default function Stopwatch() {
         {}
       )
       console.log(resp.data)
-
       setTimeStarted(moment(resp.data.timeStarted))
     }
   }
 
   // End Challenge
-  function stopTime() {
+  const stopTime = async () => {
     if (isRunning) {
       console.log('Timer Stopped')
       setIsRunning(false)
       setWatch(current => clearInterval(current))
+      // const resp = await axios.patch(
+      //   `https://localhost:5001/api/ChallengeAttempts/${attempt.id}/ended`
+      // )
     }
   }
 
@@ -93,21 +97,9 @@ export default function Stopwatch() {
   )
 }
 
-// const fetchAttemptStart = async () => {
-//   const resp = await axios.post(
-//     'https://localhost:5001/api/ChallengeAttempts',
-//     {}
-//   )
-//   console.log(resp.data)
-// }
-// useEffect(() => {
-//   fetchAttemptStart()
-// }, [])
-{
-  /* <StopwatchDisplay
+/* <StopwatchDisplay
         formatTime={formatTime}
         hours={hours}
         minutes={minutes}
         seconds={seconds}
       /> */
-}
