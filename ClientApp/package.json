@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "countdown": "^2.6.0",
     "jquery": "3.4.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 import StopwatchDisplay from './StopwatchDisplay.jsx'
 import axios from 'axios'
 import moment from 'moment'
+import countdown from 'countdown'
 
 export default function Stopwatch() {
   const [millSeconds, setMillSeconds] = useState(0)
-  const [seconds, setSeconds] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [hours, setHours] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [watch, setWatch] = useState(null)
   const [timeStarted, setTimeStarted] = useState(null)
+  const [displayTime, setDisplayTime] = useState('')
 
-  // Format Time
+  // Format Time & Timer
   const formatTime = (val, ...rest) => {
     let value = val.toString()
     if (value.length < 2) {
@@ -27,32 +26,50 @@ export default function Stopwatch() {
   const pace = () => {
     setMillSeconds(prev => prev + 1000)
   }
+  const padNumber = num => (num <= 9 ? '0' + num : num)
 
   useEffect(() => {
     console.log('-----------------')
-    console.log(moment())
-    console.log(timeStarted)
+    let raw = countdown(
+      timeStarted,
+      null,
+      countdown.HOURS & countdown.MINUTES & countdown.SECONDS
+    ).toString()
     if (timeStarted) {
-      console.log(moment().diff(timeStarted))
+      setDisplayTime(`${padNumber(0)}:${padNumber(0)}:${padNumber(0)}`)
+
+      const data = raw.split(' ').filter(word => parseInt(word))
+      if (data.length === 1) {
+        setDisplayTime(`${padNumber(0)}:${padNumber(0)}:${padNumber(data[0])}`)
+      } else if (data.length === 2) {
+        setDisplayTime(
+          `${padNumber(0)}:${padNumber(data[0])}:${padNumber(data[1])}`
+        )
+      } else {
+        setDisplayTime(
+          `${padNumber(data[0])}:${padNumber(data[1])}:${padNumber(data[2])}`
+        )
+      }
     }
   }, [millSeconds])
 
-  // setInterval(() => {
-  //   const now = moment()
-  //   const humanReadable = now.format()
-
-  //   console.log(humanReadable)
-  // }, 1000)
-
-  function startTime() {
+  // Start Challenge
+  const startTime = async () => {
     if (!isRunning) {
       console.log('Timer Started')
       setIsRunning(true)
       setWatch(setInterval(() => pace(), 1000))
-      setTimeStarted(moment())
+      const resp = await axios.post(
+        'https://localhost:5001/api/ChallengeAttempts',
+        {}
+      )
+      console.log(resp.data)
+
+      setTimeStarted(moment(resp.data.timeStarted))
     }
   }
 
+  // End Challenge
   function stopTime() {
     if (isRunning) {
       console.log('Timer Stopped')
@@ -60,17 +77,6 @@ export default function Stopwatch() {
       setWatch(current => clearInterval(current))
     }
   }
-
-  const fetchAttemptStart = async () => {
-    const resp = await axios.post(
-      'https://localhost:5001/api/ChallengeAttempts',
-      {}
-    )
-    console.log(resp.data)
-  }
-  // useEffect(() => {
-  //   fetchAttemptStart()
-  // }, [])
 
   return (
     <div className={'stopwatch'}>
@@ -81,13 +87,27 @@ export default function Stopwatch() {
       <button onClick={stopTime} className="timer-btn">
         STOP
       </button>
+      <div>{displayTime}</div>
       {/* <button className="timer-btn">RESET</button> */}
-      <StopwatchDisplay
+    </div>
+  )
+}
+
+// const fetchAttemptStart = async () => {
+//   const resp = await axios.post(
+//     'https://localhost:5001/api/ChallengeAttempts',
+//     {}
+//   )
+//   console.log(resp.data)
+// }
+// useEffect(() => {
+//   fetchAttemptStart()
+// }, [])
+{
+  /* <StopwatchDisplay
         formatTime={formatTime}
         hours={hours}
         minutes={minutes}
         seconds={seconds}
-      />
-    </div>
-  )
+      /> */
 }
