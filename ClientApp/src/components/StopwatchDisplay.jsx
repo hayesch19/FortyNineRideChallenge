@@ -1,18 +1,14 @@
 import React from 'react'
 
-class StopwatchDisplay extends React.Component {
-  render() {
-    return (
-      <div className={'stopwatch__display'}>
-        <span>
-          {this.props.formatTime(this.props.currentTimeHr)}:
-          {this.props.formatTime(this.props.currentTimeMin)}:
-          {this.props.formatTime(this.props.currentTimeSec)}
-          {/* {this.props.formatTime(this.props.currentTimeMs, 'ms')} */}
-        </span>
-      </div>
-    )
-  }
+const StopwatchDisplay = props => {
+  return (
+    <div className={'stopwatch__display'}>
+      <span>
+        {props.formatTime(props.hours)}:{props.formatTime(props.minutes)}:
+        {props.formatTime(props.seconds)}
+      </span>
+    </div>
+  )
 }
 
 export default StopwatchDisplay

@@ -1,21 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import StopwatchDisplay from './StopwatchDisplay.jsx'
-// import StopwatchHistory from './StopwatchHistory.jsx'
+import axios from 'axios'
+import moment from 'moment'
 
-class Stopwatch extends React.Component {
-  constructor(props) {
-    super(props)
+export default function Stopwatch() {
+  const [millSeconds, setMillSeconds] = useState(0)
+  const [seconds, setSeconds] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [isRunning, setIsRunning] = useState(false)
+  const [watch, setWatch] = useState(null)
+  const [timeStarted, setTimeStarted] = useState(null)
 
-    this.state = {
-      running: false,
-      currentTimeMs: 0,
-      currentTimeSec: 0,
-      currentTimeMin: 0,
-      currentTimeHr: 0
-    }
-  }
-
-  formatTime = (val, ...rest) => {
+  // Format Time
+  const formatTime = (val, ...rest) => {
     let value = val.toString()
     if (value.length < 2) {
       value = '0' + value
@@ -26,69 +24,70 @@ class Stopwatch extends React.Component {
     return value
   }
 
-  start = () => {
-    if (!this.state.running) {
-      this.setState({ running: true })
-      this.watch = setInterval(() => this.pace(), 10)
+  const pace = () => {
+    setMillSeconds(prev => prev + 1000)
+  }
+
+  useEffect(() => {
+    console.log('-----------------')
+    console.log(moment())
+    console.log(timeStarted)
+    if (timeStarted) {
+      console.log(moment().diff(timeStarted))
+    }
+  }, [millSeconds])
+
+  // setInterval(() => {
+  //   const now = moment()
+  //   const humanReadable = now.format()
+
+  //   console.log(humanReadable)
+  // }, 1000)
+
+  function startTime() {
+    if (!isRunning) {
+      console.log('Timer Started')
+      setIsRunning(true)
+      setWatch(setInterval(() => pace(), 1000))
+      setTimeStarted(moment())
     }
   }
 
-  stop = () => {
-    this.setState({ running: false })
-    clearInterval(this.watch)
-  }
-
-  pace = () => {
-    this.setState({ currentTimeMs: this.state.currentTimeMs + 10 })
-    if (this.state.currentTimeMs >= 1000) {
-      this.setState({ currentTimeSec: this.state.currentTimeSec + 1 })
-      this.setState({ currentTimeMs: 0 })
-    }
-    if (this.state.currentTimeSec >= 60) {
-      this.setState({ currentTimeMin: this.state.currentTimeMin + 1 })
-      this.setState({ currentTimeSec: 0 })
-    }
-    if (this.state.currentTimeMin >= 60) {
-      this.setState({ currentTimeHr: this.state.currentTimeHr + 1 })
-      this.setState({ currentTimeMin: 0 })
+  function stopTime() {
+    if (isRunning) {
+      console.log('Timer Stopped')
+      setIsRunning(false)
+      setWatch(current => clearInterval(current))
     }
   }
 
-  reset = () => {
-    this.setState({
-      currentTimeMs: 0,
-      currentTimeSec: 0,
-      currentTimeMin: 0,
-      currentTimeHr: 0
-    })
-  }
-
-  render() {
-    return (
-      <div className={'stopwatch'}>
-        <h2>Ready To Start The Challenge?</h2>
-        {this.state.running === false && (
-          <button className="timer-btn" onClick={this.start}>
-            START
-          </button>
-        )}
-        {this.state.running === true && (
-          <button className="timer-btn" onClick={this.stop}>
-            STOP
-          </button>
-        )}
-        <button className="timer-btn" onClick={this.reset}>
-          RESET
-        </button>
-        <StopwatchDisplay
-          ref="display"
-          {...this.state}
-          formatTime={this.formatTime}
-        />
-        {/* <StopwatchHistory {...this.state} formatTime={this.formatTime} /> */}
-      </div>
+  const fetchAttemptStart = async () => {
+    const resp = await axios.post(
+      'https://localhost:5001/api/ChallengeAttempts',
+      {}
     )
+    console.log(resp.data)
   }
-}
+  // useEffect(() => {
+  //   fetchAttemptStart()
+  // }, [])
 
-export default Stopwatch
+  return (
+    <div className={'stopwatch'}>
+      <h2>Ready To Start The Challenge?</h2>
+      <button onClick={startTime} className="timer-btn">
+        START
+      </button>
+      <button onClick={stopTime} className="timer-btn">
+        STOP
+      </button>
+      {/* <button className="timer-btn">RESET</button> */}
+      <StopwatchDisplay
+        formatTime={formatTime}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
+    </div>
+  )
+}
