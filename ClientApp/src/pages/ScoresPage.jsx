@@ -1,15 +1,23 @@
-import React from 'react'
-// import StopwatchHistory from '../components/StopwatchHistory'
+import React, { useEffect, useState } from 'react'
+import Axios from 'axios'
 
 const ScoresPage = () => {
+  const [attemptScore, setAttemptScore] = useState()
+
+  const fetchScoreData = async () => {
+    const resp = await Axios.get('https://localhost:5001/api/ChallengeAttempts')
+    setAttemptScore(resp.data)
+    console.log(resp.data, 'Attempt Scores')
+  }
+  useEffect(() => {
+    fetchScoreData()
+  }, [])
+
   return (
     <main>
       <h2>Scores Page</h2>
       <div className="scores-area">
-        <h3>Date</h3>
-        <p>Total Time: 17:26:10</p>
-        <p>Total Rides: 36</p>
-        <p>Score:(Score IMG)</p>
+        <p>Scores Go Here</p>
       </div>
     </main>
   )

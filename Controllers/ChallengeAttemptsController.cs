@@ -52,7 +52,7 @@ namespace FortyNineRideChallenge.Controllers
     [HttpGet("current")]
     public ActionResult GetCurrentAttempt()
     {
-      var attempt = context.ChallengeAttempt.FirstOrDefault(a => a.TimeStarted.Date == DateTime.Today);
+      var attempt = context.ChallengeAttempt.FirstOrDefault(a => a.TimeStarted.Date == DateTime.Today && a.TimeEnded == null);
       if (attempt != null)
       {
         return Ok(attempt);
