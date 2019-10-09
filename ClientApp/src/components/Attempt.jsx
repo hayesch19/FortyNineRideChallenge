@@ -12,8 +12,14 @@ const Attempt = props => {
   return (
     <>
       <h3>Attempt Score</h3>
-      <p>Time Started: {props.timeStarted}</p>
-      <p>Time Ended: {props.timeEnded}</p>
+      <p>
+        Time Started:{' '}
+        {moment(props.timeStarted).format('dddd, MMMM Do YYYY, hh:mm a')}
+      </p>
+      <p>
+        Time Ended:{' '}
+        {moment(props.timeEnded).format('dddd, MMMM Do YYYY, hh:mm a')}
+      </p>
       <p>
         Total Time: {duration.get('hours')} hours &amp;&nbsp;
         {duration.get('minutes')} minutes
