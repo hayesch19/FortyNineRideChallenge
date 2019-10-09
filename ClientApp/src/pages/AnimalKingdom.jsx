@@ -12,9 +12,7 @@ const AnimalKingdom = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
   const fetchCurrentAttempt = async () => {
-    const resp = await axios.get(
-      'https://localhost:5001/api/ChallengeAttempts/current'
-    )
+    const resp = await axios.get('/api/ChallengeAttempts/current')
     setAttempt(resp.data)
     console.log(resp.data, 'Current Attempt')
   }
@@ -23,7 +21,7 @@ const AnimalKingdom = () => {
   }, [])
 
   const fetchAnimalKingdomData = async () => {
-    const resp = await axios.get('https://localhost:5001/api/DWParks/-2/rides')
+    const resp = await axios.get('/api/DWParks/-2/rides')
     setAnimalKingdomRides(resp.data)
     console.log(resp.data)
   }
@@ -33,7 +31,7 @@ const AnimalKingdom = () => {
 
   const rideClicked = async ride => {
     const resp = await axios.patch(
-      `https://localhost:5001/api/DWRides/${ride.id}/completed/${attempt.id}`
+      `/api/DWRides/${ride.id}/completed/${attempt.id}`
     )
     setRideCompleted(resp.data)
     ride.completed = true

@@ -28,9 +28,7 @@ class Stopwatch extends React.Component {
   start = () => {
     // const [attemptStart, setAttemptStart] = useState([])
     const fetchAttemptStart = async () => {
-      const resp = await axios.post(
-        'https://localhost:5001/api/ChallengeAttempts'
-      )
+      const resp = await axios.post('/api/ChallengeAttempts')
       // setAttemptStart(resp.data)
       console.log(resp.data, 'Challenge Started!')
     }

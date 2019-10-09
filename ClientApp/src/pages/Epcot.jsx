@@ -12,9 +12,7 @@ const Epcot = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
   const fetchCurrentAttempt = async () => {
-    const resp = await axios.get(
-      'https://localhost:5001/api/ChallengeAttempts/current'
-    )
+    const resp = await axios.get('/api/ChallengeAttempts/current')
     setAttempt(resp.data)
     console.log(resp.data, 'Current Attempt')
   }
@@ -23,7 +21,7 @@ const Epcot = () => {
   }, [])
 
   const fetchEpcotData = async () => {
-    const resp = await axios.get('https://localhost:5001/api/DWParks/-4/rides')
+    const resp = await axios.get('/api/DWParks/-4/rides')
     setEpcotRides(resp.data)
     console.log(resp.data)
   }
@@ -34,7 +32,7 @@ const Epcot = () => {
 
   const rideClicked = async ride => {
     const resp = await axios.patch(
-      `https://localhost:5001/api/DWRides/${ride.id}/completed/${attempt.id}`
+      `/api/DWRides/${ride.id}/completed/${attempt.id}`
     )
     setRideCompleted(resp.data)
     ride.completed = true

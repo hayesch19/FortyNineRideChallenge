@@ -43,9 +43,7 @@ export default function Stopwatch(props) {
 
   // Get Current Attempt
   const fetchCurrentAttempt = async () => {
-    const resp = await axios.get(
-      'https://localhost:5001/api/ChallengeAttempts/current'
-    )
+    const resp = await axios.get('/api/ChallengeAttempts/current')
     if (resp.data.timeStarted) {
       setTimeStarted(moment(resp.data.timeStarted))
       setIsRunning(true)
@@ -64,10 +62,7 @@ export default function Stopwatch(props) {
       console.log('Timer Started')
       setIsRunning(true)
       setWatch(setInterval(() => pace(), 1000))
-      const resp = await axios.post(
-        'https://localhost:5001/api/ChallengeAttempts',
-        {}
-      )
+      const resp = await axios.post('/api/ChallengeAttempts', {})
       console.log(resp.data)
       setTimeStarted(moment(resp.data.timeStarted))
     }
@@ -79,7 +74,7 @@ export default function Stopwatch(props) {
       setIsRunning(false)
       setWatch(current => clearInterval(current))
       const resp = await axios.patch(
-        `https://localhost:5001/api/ChallengeAttempts/${endAttempt.id}/ended`
+        `/api/ChallengeAttempts/${endAttempt.id}/ended`
       )
       console.log(resp.data, 'Timer Stopped')
     }

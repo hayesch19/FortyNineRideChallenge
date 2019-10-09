@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 
 const ScoresPage = () => {
-  const [attemptScore, setAttemptScore] = useState()
+  const [attemptScore, setAttemptScore] = useState([])
 
   const fetchScoreData = async () => {
-    const resp = await Axios.get('https://localhost:5001/api/ChallengeAttempts')
+    const resp = await axios.get('/api/ChallengeAttempts')
     setAttemptScore(resp.data)
     console.log(resp.data, 'Attempt Scores')
   }
@@ -16,9 +16,18 @@ const ScoresPage = () => {
   return (
     <main>
       <h2>Scores Page</h2>
-      <div className="scores-area">
-        <p>Scores Go Here</p>
-      </div>
+      <section className="scores-area">
+        {attemptScore.map((attempt, i) => {
+          return (
+            <div key={i}>
+              <p>Time Started: {attempt.timeStarted}</p>
+              <p>Time Ended: {attempt.timeEnded}</p>
+              <p>Total Time: {attempt.totalTime}</p>
+              <p>Rides Completed: {attempt.ridesCompleted}</p>
+            </div>
+          )
+        })}
+      </section>
     </main>
   )
 }

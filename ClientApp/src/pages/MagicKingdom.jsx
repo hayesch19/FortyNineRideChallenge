@@ -12,15 +12,13 @@ const MagicKingdom = () => {
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
   const fetchCurrentAttempt = async () => {
-    const resp = await axios.get(
-      'https://localhost:5001/api/ChallengeAttempts/current'
-    )
+    const resp = await axios.get('/api/ChallengeAttempts/current')
     setAttempt(resp.data)
     console.log(resp.data)
   }
 
   const fetchMagicKingdomData = async () => {
-    const resp = await axios.get('https://localhost:5001/api/DWParks/-1/rides')
+    const resp = await axios.get('/api/DWParks/-1/rides')
     setMagicKingdomRides(resp.data)
     console.log(resp.data)
   }
@@ -32,7 +30,7 @@ const MagicKingdom = () => {
 
   const rideClicked = async ride => {
     const resp = await axios.patch(
-      `https://localhost:5001/api/DWRides/${ride.id}/completed/${attempt.id}`
+      `/api/DWRides/${ride.id}/completed/${attempt.id}`
     )
     setRideCompleted(resp.data)
     ride.completed = true
