@@ -5,26 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const Epcot = () => {
+  const [attempt, setAttempt] = useState()
+  const [rideCompleted, setRideCompleted] = useState([])
+  const [epcotRides, setEpcotRides] = useState([])
+
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
   const fetchCurrentAttempt = async () => {
     const resp = await axios.get(
       'https://localhost:5001/api/ChallengeAttempts/current'
     )
+    setAttempt(resp.data)
     console.log(resp.data, 'Current Attempt')
   }
   useEffect(() => {
     fetchCurrentAttempt()
   }, [])
 
-  const [epcotRides, setEpcotRides] = useState([])
   const fetchEpcotData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-4/rides')
     setEpcotRides(resp.data)
     console.log(resp.data)
   }
-
-  const [rideCompleted, setRideCompleted] = useState([])
 
   useEffect(() => {
     fetchEpcotData()
@@ -32,7 +34,7 @@ const Epcot = () => {
 
   const rideClicked = async ride => {
     const resp = await axios.patch(
-      `https://localhost:5001/api/DWRides/${ride.id}/completed`
+      `https://localhost:5001/api/DWRides/${ride.id}/completed/${attempt.id}`
     )
     setRideCompleted(resp.data)
     ride.completed = true

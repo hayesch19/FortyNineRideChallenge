@@ -59,7 +59,7 @@ namespace FortyNineRideChallenge.Controllers
       }
       else
       {
-        return NotFound();
+        return Ok(new { message = "Not Found" });
       }
     }
 

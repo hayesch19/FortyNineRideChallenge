@@ -70,8 +70,8 @@ namespace FortyNineRideChallenge.Controllers
     }
 
     // Updated Ride Status
-    [HttpPatch("{id}/completed")]
-    public ActionResult<DisneyWorldRides> UpdateStatus(int id)
+    [HttpPatch("{id}/completed/{attemptId}")]
+    public ActionResult<DisneyWorldRides> UpdateStatus(int id, int attemptId)
     {
       var status = context.DisneyWorldRide.FirstOrDefault(s => s.Id == id);
       if (status == null)
@@ -81,9 +81,11 @@ namespace FortyNineRideChallenge.Controllers
       else
       {
         status.Complete = true;
-
         // get the attempt
+        var attemptRide = context.ChallengeAttempt.FirstOrDefault(a => a.Id == attemptId);
         // update the count by 1
+        attemptRide.RidesCompleted++;
+
 
         context.SaveChanges();
         return status;

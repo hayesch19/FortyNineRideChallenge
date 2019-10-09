@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import StopwatchDisplay from './StopwatchDisplay.jsx'
 import axios from 'axios'
 import moment from 'moment'
 import countdown from 'countdown'
@@ -10,25 +9,12 @@ export default function Stopwatch(props) {
   const [watch, setWatch] = useState(null)
   const [timeStarted, setTimeStarted] = useState(null)
   const [displayTime, setDisplayTime] = useState('')
+  const [endAttempt, setEndAttempt] = useState()
 
   const pace = () => {
     setMillSeconds(prev => prev + 1000)
   }
   const padNumber = num => (num <= 9 ? '0' + num : num)
-  const fetchCurrentAttempt = async () => {
-    const resp = await axios.get(
-      'https://localhost:5001/api/ChallengeAttempts/current'
-    )
-    if (resp.data.timeStarted) {
-      setTimeStarted(moment(resp.data.timeStarted))
-      setIsRunning(true)
-      setWatch(setInterval(() => pace(), 1000))
-    }
-    console.log(resp.data, 'Current Attempt')
-  }
-  useEffect(() => {
-    fetchCurrentAttempt()
-  }, [])
 
   useEffect(() => {
     let raw = countdown(
@@ -55,6 +41,23 @@ export default function Stopwatch(props) {
     }
   }, [millSeconds])
 
+  // Get Current Attempt
+  const fetchCurrentAttempt = async () => {
+    const resp = await axios.get(
+      'https://localhost:5001/api/ChallengeAttempts/current'
+    )
+    if (resp.data.timeStarted) {
+      setTimeStarted(moment(resp.data.timeStarted))
+      setIsRunning(true)
+      setWatch(setInterval(() => pace(), 1000))
+    }
+    setEndAttempt(resp.data)
+    console.log(resp.data, 'Current Attempt')
+  }
+  useEffect(() => {
+    fetchCurrentAttempt()
+  }, [])
+
   // Start Challenge
   const startTime = async () => {
     if (!isRunning) {
@@ -73,12 +76,12 @@ export default function Stopwatch(props) {
   // End Challenge
   const stopTime = async () => {
     if (isRunning) {
-      console.log('Timer Stopped')
       setIsRunning(false)
       setWatch(current => clearInterval(current))
-      // const resp = await axios.patch(
-      //   `https://localhost:5001/api/ChallengeAttempts/${attempt.id}/ended`
-      // )
+      const resp = await axios.patch(
+        `https://localhost:5001/api/ChallengeAttempts/${endAttempt.id}/ended`
+      )
+      console.log(resp.data, 'Timer Stopped')
     }
   }
 
@@ -92,14 +95,6 @@ export default function Stopwatch(props) {
         STOP
       </button>
       <div>{displayTime}</div>
-      {/* <button className="timer-btn">RESET</button> */}
     </div>
   )
 }
-
-/* <StopwatchDisplay
-        formatTime={formatTime}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-      /> */

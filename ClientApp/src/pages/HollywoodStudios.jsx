@@ -5,25 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const HollywoodStudios = () => {
+  const [attempt, setAttempt] = useState()
+  const [rideCompleted, setRideCompleted] = useState([])
+  const [hollywoodStudiosRides, setHollywoodStudiosRides] = useState([])
+
   const element = <FontAwesomeIcon icon={faCheckCircle} />
 
   const fetchCurrentAttempt = async () => {
     const resp = await axios.get(
       'https://localhost:5001/api/ChallengeAttempts/current'
     )
+    setAttempt(resp.data)
     console.log(resp.data, 'Current Attempt')
   }
   useEffect(() => {
     fetchCurrentAttempt()
   }, [])
 
-  const [hollywoodStudiosRides, setHollywoodStudiosRides] = useState([])
   const fetchHollywoodStudiosData = async () => {
     const resp = await axios.get('https://localhost:5001/api/DWParks/-3/rides')
     setHollywoodStudiosRides(resp.data)
     console.log(resp.data)
   }
-  const [rideCompleted, setRideCompleted] = useState([])
 
   useEffect(() => {
     fetchHollywoodStudiosData()
@@ -31,7 +34,7 @@ const HollywoodStudios = () => {
 
   const rideClicked = async ride => {
     const resp = await axios.patch(
-      `https://localhost:5001/api/DWRides/${ride.id}/completed`
+      `https://localhost:5001/api/DWRides/${ride.id}/completed/${attempt.id}`
     )
     setRideCompleted(resp.data)
     ride.completed = true
