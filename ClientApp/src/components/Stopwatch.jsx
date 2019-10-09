@@ -11,6 +11,7 @@ export default function Stopwatch(props) {
   const [displayTime, setDisplayTime] = useState('')
   const [endAttempt, setEndAttempt] = useState()
 
+  // Timer Logic
   const pace = () => {
     setMillSeconds(prev => prev + 1000)
   }

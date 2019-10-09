@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Attempt from '../components/Attempt'
 
 const ScoresPage = () => {
   const [attemptScore, setAttemptScore] = useState([])
@@ -20,10 +21,7 @@ const ScoresPage = () => {
         {attemptScore.map((attempt, i) => {
           return (
             <div key={i}>
-              <p>Time Started: {attempt.timeStarted}</p>
-              <p>Time Ended: {attempt.timeEnded}</p>
-              <p>Total Time: {attempt.totalTime}</p>
-              <p>Rides Completed: {attempt.ridesCompleted}</p>
+              <Attempt {...attempt} />
             </div>
           )
         })}
