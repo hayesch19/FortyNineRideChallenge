@@ -19,12 +19,14 @@ const Attempt = props => {
         {isOnGoing ? 'On Going' : moment(props.timeEnded).format('hh:mm a')}
       </p>
       <p>
-        {isOnGoing ? '' : 'Total Time: '}
-        {isOnGoing ? '' : duration.get('hours')}
-        {isOnGoing ? '' : ' hours '}
-        {isOnGoing ? '' : ' & '}
-        {isOnGoing ? '' : duration.get('minutes')}
-        {isOnGoing ? '' : ' minutes'}
+        {isOnGoing ? (
+          ''
+        ) : (
+          <>
+            Total Time: {duration.get('hours')} hours &amp;{' '}
+            {duration.get('minutes')} minutes{' '}
+          </>
+        )}
       </p>
     </>
   )
