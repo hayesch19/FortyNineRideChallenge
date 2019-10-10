@@ -10,6 +10,7 @@ export default function Stopwatch(props) {
   const [timeStarted, setTimeStarted] = useState(null)
   const [displayTime, setDisplayTime] = useState('')
   const [endAttempt, setEndAttempt] = useState()
+  const [rideCompleted, setRideCompleted] = useState([])
 
   // Timer Logic
   const pace = () => {
@@ -51,7 +52,6 @@ export default function Stopwatch(props) {
       setWatch(setInterval(() => pace(), 1000))
     }
     setEndAttempt(resp.data)
-    console.log(resp.data, 'Current Attempt')
   }
   useEffect(() => {
     fetchCurrentAttempt()
@@ -70,27 +70,28 @@ export default function Stopwatch(props) {
   }
 
   // End Challenge
-  const stopTime = async () => {
+  const stopTime = async rides => {
     if (isRunning) {
       setIsRunning(false)
       setWatch(current => clearInterval(current))
       const resp = await axios.patch(
         `/api/ChallengeAttempts/${endAttempt.id}/ended`
       )
+      setRideCompleted()
+      rides.completed = false
       console.log(resp.data, 'Timer Stopped')
     }
   }
 
   return (
     <div className={'stopwatch'}>
-      <h2>Ready To Start The Challenge?</h2>
       <button onClick={startTime} className="timer-btn">
         START
       </button>
       <button onClick={stopTime} className="timer-btn">
         STOP
       </button>
-      <div>{displayTime}</div>
+      <div className="stopwatch__display">{displayTime}</div>
     </div>
   )
 }

@@ -43,8 +43,8 @@ const HollywoodStudios = () => {
       <div className="timer-area">
         <Stopwatch />
       </div>
+      <h2>Hollywood Studios</h2>
       <div className="ride-list-area">
-        <h2>Hollywood Studios</h2>
         <section className="displayed-rides">
           {hollywoodStudiosRides.map((ride, i) => {
             return (

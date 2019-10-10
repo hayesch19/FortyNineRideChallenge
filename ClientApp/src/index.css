@@ -26,6 +26,7 @@ h1 {
 h2 {
   font-size: 2.5rem;
   text-align: center;
+  padding-bottom: 0.5rem;
 }
 
 li {
@@ -38,6 +39,7 @@ li {
   height: 10rem;
   width: auto;
 }
+
 .top-container {
   display: flex;
   justify-content: space-between;
@@ -50,8 +52,13 @@ li {
   padding-left: 2rem;
 }
 
+.top-right {
+  padding: 3rem;
+}
+
 .timer-area {
   text-align: center;
+  padding-top: 3.5rem;
 }
 
 .ride-nav {
@@ -62,10 +69,13 @@ li {
   font-size: 1.2rem;
 }
 
+.ride-list-area {
+  display: flex;
+  justify-content: center;
+}
+
 .displayed-rides {
   text-align: left;
-  padding-left: 15rem;
-  padding-top: 0.5rem;
 }
 
 .ride-btn {
@@ -99,14 +109,6 @@ li {
 .stopwatch__display {
   font-size: 30px;
   padding: 0.5rem;
-}
-
-.stopwatch__history {
-  margin-top: 15px;
-}
-
-li:last-child {
-  display: none;
 }
 
 /***** Drop Down Menu *****/

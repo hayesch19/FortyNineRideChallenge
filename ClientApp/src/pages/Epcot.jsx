@@ -43,8 +43,8 @@ const Epcot = () => {
       <div className="timer-area">
         <Stopwatch />
       </div>
+      <h2>Epcot</h2>
       <div className="ride-list-area">
-        <h2>Epcot</h2>
         <section className="displayed-rides">
           {epcotRides.map((ride, i) => {
             return (

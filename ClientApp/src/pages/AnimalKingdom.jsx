@@ -42,8 +42,8 @@ const AnimalKingdom = () => {
       <div className="timer-area">
         <Stopwatch />
       </div>
+      <h2>Animal Kingdom</h2>
       <div className="ride-list-area">
-        <h2>Animal Kingdom</h2>
         <section className="displayed-rides">
           {animalKingdomRides.map((ride, i) => {
             return (
