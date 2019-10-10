@@ -77,8 +77,7 @@ export default function Stopwatch(props) {
       const resp = await axios.patch(
         `/api/ChallengeAttempts/${endAttempt.id}/ended`
       )
-      setRideCompleted()
-      rides.completed = false
+      setRideCompleted(false)
       console.log(resp.data, 'Timer Stopped')
     }
   }
