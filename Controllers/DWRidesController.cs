@@ -94,19 +94,20 @@ namespace FortyNineRideChallenge.Controllers
 
     // Reset All Rides Status
     [HttpPatch("completed")]
-    public ActionResult<DisneyWorldRides> ResetRidesStatus()
+    public ActionResult ResetRidesStatus()
     {
-      var status = context.DisneyWorldRide.FirstOrDefault();
-      if (status == null)
+      // find the rides you want to update 
+      var rides = context.DisneyWorldRide.Where(w => w.Complete == true);
+      // loop over the rides and set .Complete = false
+      foreach (var ride in rides)
       {
-        return NotFound();
+        ride.Complete = false;
       }
-      else
-      {
-        status.Complete = true;
-        context.SaveChanges();
-        return status;
-      }
+      // save Changes
+      context.SaveChanges();
+      // return something
+      return Ok();
+
     }
   }
 }

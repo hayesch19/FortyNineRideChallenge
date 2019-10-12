@@ -10,7 +10,7 @@ export default function Stopwatch(props) {
   const [timeStarted, setTimeStarted] = useState(null)
   const [displayTime, setDisplayTime] = useState('')
   const [endAttempt, setEndAttempt] = useState()
-  const [rideCompleted, setRideCompleted] = useState([])
+  const [resetRides, setResetRides] = useState()
 
   // Timer Logic
   const pace = () => {
@@ -53,9 +53,6 @@ export default function Stopwatch(props) {
     }
     setEndAttempt(resp.data)
   }
-  useEffect(() => {
-    fetchCurrentAttempt()
-  }, [])
 
   // Start Challenge
   const startTime = async () => {
@@ -77,17 +74,33 @@ export default function Stopwatch(props) {
       const resp = await axios.patch(
         `/api/ChallengeAttempts/${endAttempt.id}/ended`
       )
-      setRideCompleted(false)
+      resetAllRides()
       console.log(resp.data, 'Timer Stopped')
     }
   }
+
+  // Reset All Park Rides
+  const resetAllRides = async rides => {
+    const resp = await axios.patch('/api/DWRides/completed')
+    setResetRides(resp.data)
+    console.log(resp.data, 'Rides Reset')
+  }
+  useEffect(() => {
+    fetchCurrentAttempt()
+  }, [])
 
   return (
     <div className={'stopwatch'}>
       <button onClick={startTime} className="timer-btn">
         START
       </button>
-      <button onClick={stopTime} className="timer-btn">
+      <button
+        onClick={e => {
+          stopTime()
+          resetAllRides()
+        }}
+        className="timer-btn"
+      >
         STOP
       </button>
       <div className="stopwatch__display">{displayTime}</div>
