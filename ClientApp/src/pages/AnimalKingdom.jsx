@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Stopwatch from '../components/Stopwatch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 const AnimalKingdom = () => {
   const [attempt, setAttempt] = useState()
   const [rideCompleted, setRideCompleted] = useState([])
   const [animalKingdomRides, setAnimalKingdomRides] = useState([])
 
-  const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />
+  const square = <FontAwesomeIcon icon={faSquare} />
   const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} />
 
   const fetchCurrentAttempt = async () => {
@@ -60,7 +60,7 @@ const AnimalKingdom = () => {
                   className={`ride-btn`}
                   onClick={() => rideClicked(ride, i)}
                 >
-                  {ride.complete ? thumbsUp : checkCircle}
+                  {ride.complete ? thumbsUp : square}
                 </button>
                 {ride.rideName}
               </p>

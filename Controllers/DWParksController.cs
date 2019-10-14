@@ -95,8 +95,7 @@ namespace FortyNineRideChallenge.Controllers
     [HttpGet("{disneyWorldParkId}/rides")]
     public ActionResult GetParkRides(int disneyWorldParkId)
     {
-      // Add Order By Rides Completed
-      var ride = context.DisneyWorldRide.Where(w => w.DisneyWorldParkId == disneyWorldParkId);
+      var ride = context.DisneyWorldRide.Where(w => w.DisneyWorldParkId == disneyWorldParkId).OrderBy(o => o.Complete);
       if (ride == null)
       {
         return NotFound();
