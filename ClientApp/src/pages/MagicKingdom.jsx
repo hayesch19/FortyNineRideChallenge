@@ -8,7 +8,6 @@ const MagicKingdom = () => {
   const [attempt, setAttempt] = useState()
   const [rideCompleted, setRideCompleted] = useState([])
   const [magicKingdomRides, setMagicKingdomRides] = useState([])
-  const [ride, setRide] = useState([])
 
   const checkCircle = <FontAwesomeIcon icon={faCheckCircle} />
   const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} />
