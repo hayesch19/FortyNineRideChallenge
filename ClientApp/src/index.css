@@ -61,6 +61,7 @@ li {
 .ride-nav {
   display: flex;
   justify-content: space-evenly;
+  text-align: center;
   background-color: #90c6fa;
   color: #f1f1f1;
   font-size: 1.2rem;
@@ -127,13 +128,11 @@ li {
   border: none;
 }
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -145,7 +144,6 @@ li {
   border-radius: 0.2rem;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   color: #18509b;
   padding: 12px 16px;
@@ -153,20 +151,69 @@ li {
   display: block;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #ddd;
   border-radius: 0.2rem;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #84b7e6;
+}
+
+/***** Rules Accordion *****/
+
+.accordion__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #18509b;
+  cursor: pointer;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  transition: background-color 0.6s ease;
+}
+
+.accordion:hover,
+.active {
+  background-color: #84b7e6;
+}
+
+.accordion__title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.accordion__icon {
+  margin-left: auto;
+  transition: transform 0.6s ease;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.accordion__content {
+  background-color: white;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.accordion__text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 18px;
 }
 
 /***** Media Queries *****/
