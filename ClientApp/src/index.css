@@ -78,13 +78,13 @@ li {
 }
 
 .scores-area {
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .ride-list-area {
   display: flex;
-  justify-content: center;
   padding-left: 0.5rem;
+  /* justify-content: center; */
 }
 .displayed-rides {
   display: flex;
@@ -160,4 +160,28 @@ li {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #84b7e6;
+}
+
+/***** Media Queries *****/
+
+@media (min-width: 600px) {
+  .ride-list-area {
+    display: flex;
+    padding-left: 0.5rem;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 600px) {
+  .scores-area {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 600px) {
+  .score-card {
+    text-align: center;
+    padding: 0.5rem;
+  }
 }

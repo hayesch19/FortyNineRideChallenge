@@ -11,23 +11,25 @@ const Attempt = props => {
 
   return (
     <>
-      <h3>{moment(props.timeStarted).format('MMMM Do YYYY,')}</h3>
-      <p>Rides Completed: {props.ridesCompleted}</p>
-      <p>Time Started: {moment(props.timeStarted).format('hh:mm a')}</p>
-      <p>
-        Time Ended:{' '}
-        {isOnGoing ? 'On Going' : moment(props.timeEnded).format('hh:mm a')}
-      </p>
-      <p>
-        {isOnGoing ? (
-          ''
-        ) : (
-          <>
-            Total Time: {duration.get('hours')} hours &amp;{' '}
-            {duration.get('minutes')} minutes{' '}
-          </>
-        )}
-      </p>
+      <section className="score-card">
+        <h3>{moment(props.timeStarted).format('MMMM Do YYYY,')}</h3>
+        <p>Rides Completed: {props.ridesCompleted}</p>
+        <p>Time Started: {moment(props.timeStarted).format('hh:mm a')}</p>
+        <p>
+          Time Ended:{' '}
+          {isOnGoing ? 'On Going' : moment(props.timeEnded).format('hh:mm a')}
+        </p>
+        <p>
+          {isOnGoing ? (
+            ''
+          ) : (
+            <>
+              Total Time: {duration.get('hours')} hours &amp;{' '}
+              {duration.get('minutes')} minutes{' '}
+            </>
+          )}
+        </p>
+      </section>
     </>
   )
 }
