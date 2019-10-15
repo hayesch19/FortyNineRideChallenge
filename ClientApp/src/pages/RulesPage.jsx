@@ -2,7 +2,7 @@ import React from 'react'
 
 const RulesPage = () => {
   return (
-    <main>
+    <main className="rules-page">
       <h2>Offical Rules</h2>
       <div className="rules-area">
         <p>

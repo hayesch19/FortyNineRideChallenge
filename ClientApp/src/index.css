@@ -73,10 +73,17 @@ li {
   color: #f1f1f1;
 }
 
+.rules-page {
+  padding-top: 1rem;
+}
+
 .rules-area {
   padding: 0.8rem;
 }
 
+.scores-page {
+  padding-top: 1rem;
+}
 .scores-area {
   padding: 1rem;
 }

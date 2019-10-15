@@ -13,10 +13,14 @@ const Attempt = props => {
     <>
       <section className="score-card">
         <h3>{moment(props.timeStarted).format('MMMM Do YYYY,')}</h3>
-        <p>Rides Completed: {props.ridesCompleted}</p>
-        <p>Time Started: {moment(props.timeStarted).format('hh:mm a')}</p>
         <p>
-          Time Ended:{' '}
+          <b>Rides Completed:</b> {props.ridesCompleted}
+        </p>
+        <p>
+          <b>Time Started:</b> {moment(props.timeStarted).format('hh:mm a')}
+        </p>
+        <p>
+          <b>Time Ended:</b>{' '}
           {isOnGoing ? 'On Going' : moment(props.timeEnded).format('hh:mm a')}
         </p>
         <p>

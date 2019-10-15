@@ -15,7 +15,7 @@ const ScoresPage = () => {
   }, [])
 
   return (
-    <main>
+    <main className="scores-page">
       <h2>Scores Page</h2>
       <section className="scores-area">
         {attemptScore.map((attempt, i) => {
