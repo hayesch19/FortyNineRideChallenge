@@ -12,7 +12,6 @@ const HeaderNav = () => {
       <div className="top-left">
         <header>
           <img className="header-logo" src={FortyNineRideLogo} alt="" />
-          {/* <h1>49 Ride Challenge</h1> */}
         </header>
       </div>
       <div className="top-right">

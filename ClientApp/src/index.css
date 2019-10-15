@@ -64,6 +64,7 @@ li {
   background-color: #90c6fa;
   color: #f1f1f1;
   font-size: 1.2rem;
+  padding: 0.3rem;
 }
 
 .ride-btn {
@@ -73,7 +74,7 @@ li {
 }
 
 .rules-area {
-  padding: 0.5rem;
+  padding: 0.8rem;
 }
 
 .scores-area {
