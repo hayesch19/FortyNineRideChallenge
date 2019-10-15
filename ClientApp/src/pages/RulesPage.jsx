@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import RulesAccordion from '../components/RulesAccordion'
 
 const RulesPage = () => {

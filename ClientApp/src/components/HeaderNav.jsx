@@ -11,7 +11,9 @@ const HeaderNav = () => {
     <section className="top-container">
       <div className="top-left">
         <header>
-          <img className="header-logo" src={FortyNineRideLogo} alt="" />
+          <Link to="/">
+            <img className="header-logo" src={FortyNineRideLogo} alt="" />
+          </Link>
         </header>
       </div>
       <div className="top-right">
