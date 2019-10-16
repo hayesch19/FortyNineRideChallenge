@@ -80,7 +80,7 @@ const Counter = ({ delay = 1000 }) => {
   const fetchCurrentAttempt = async () => {
     const resp = await axios.get('/api/ChallengeAttempts/current')
     if (resp.data.timeStarted) {
-      setTimeStarted(moment(resp.data.timeStarted))
+      setTimeStarted(moment.utc(resp.data.timeStarted))
     }
     setEndAttempt(resp.data)
   }

@@ -59,7 +59,7 @@ namespace FortyNineRideChallenge.Controllers
       }
       else
       {
-        return Ok(new { message = "Not Found" });
+        return Ok(new { message = "No New Challenge" });
       }
     }
 
@@ -84,7 +84,7 @@ namespace FortyNineRideChallenge.Controllers
       }
       else
       {
-        status.TimeEnded = DateTime.Now;
+        status.TimeEnded = DateTime.UtcNow;
         context.SaveChanges();
         return status;
 
