@@ -3,6 +3,7 @@ import axios from 'axios'
 import Stopwatch from '../components/Stopwatch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import Counter from '../components/Counter'
 
 const HollywoodStudios = () => {
   const [attempt, setAttempt] = useState()
@@ -48,7 +49,8 @@ const HollywoodStudios = () => {
   return (
     <main>
       <div className="timer-area">
-        <Stopwatch />
+        {/* <Stopwatch /> */}
+        <Counter />
       </div>
       <h2>Hollywood Studios</h2>
       <div className="ride-list-area">
