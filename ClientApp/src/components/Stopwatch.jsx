@@ -87,6 +87,9 @@ export default function Stopwatch(props) {
   }
   useEffect(() => {
     fetchCurrentAttempt()
+    return () => {
+      setWatch(current => clearInterval(current))
+    }
   }, [])
 
   return (
