@@ -12,7 +12,7 @@ const Attempt = props => {
   return (
     <>
       <section className="score-card">
-        <h3>{moment(props.timeStarted).format('MMMM Do YYYY,')}</h3>
+        <h3>{moment(props.timeStarted).format('MMMM Do YYYY')}</h3>
         <p>
           <b>Rides Completed:</b> {props.ridesCompleted}
         </p>

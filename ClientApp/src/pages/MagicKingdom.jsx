@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Stopwatch from '../components/Stopwatch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Counter from '../components/Counter'
@@ -49,7 +48,6 @@ const MagicKingdom = () => {
   return (
     <main>
       <div className="timer-area">
-        {/* <Stopwatch /> */}
         <Counter />
       </div>
       <h2>Magic Kingdom</h2>

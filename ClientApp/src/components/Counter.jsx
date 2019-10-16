@@ -10,6 +10,7 @@ const Counter = ({ delay = 1000 }) => {
   const [displayTime, setDisplayTime] = useState('')
   const [isRunning, setIsRunning] = useState(false)
   const [endAttempt, setEndAttempt] = useState()
+  const [resetRides, setResetRides] = useState()
 
   useInterval(() => {
     if (isRunning) {
@@ -36,7 +37,7 @@ const Counter = ({ delay = 1000 }) => {
         setDisplayTime(
           `${padNumber(0)}:${padNumber(data[0])}:${padNumber(data[1])}`
         )
-      } else {
+      } else if (data.length === 3) {
         setDisplayTime(
           `${padNumber(data[0])}:${padNumber(data[1])}:${padNumber(data[2])}`
         )
@@ -54,11 +55,11 @@ const Counter = ({ delay = 1000 }) => {
   const startTime = async () => {
     if (!isRunning) {
       const resp = await axios.post('/api/ChallengeAttempts', {})
-      console.log(resp.data, 'Timer Started')
       setTimeStarted(moment(resp.data.timeStarted))
     }
   }
 
+  // End Challenge
   const stopTime = async rides => {
     if (isRunning) {
       setTimeStarted(null)
@@ -66,10 +67,16 @@ const Counter = ({ delay = 1000 }) => {
       const resp = await axios.patch(
         `/api/ChallengeAttempts/${endAttempt.id}/ended`
       )
-      console.log(resp.data, 'Timer Stopped')
     }
   }
 
+  const resetAllRides = async rides => {
+    const resp = await axios.patch('/api/DWRides/completed')
+    setResetRides(resp.data)
+    console.log(resp.data, 'Rides Reset')
+  }
+
+  // Get Current Attempt
   const fetchCurrentAttempt = async () => {
     const resp = await axios.get('/api/ChallengeAttempts/current')
     if (resp.data.timeStarted) {
@@ -81,6 +88,8 @@ const Counter = ({ delay = 1000 }) => {
     fetchCurrentAttempt()
   }, [])
 
+  // Reset All Park Rides
+
   return (
     <div className={'stopwatch'}>
       <button onClick={startTime} className="timer-btn">
@@ -89,7 +98,7 @@ const Counter = ({ delay = 1000 }) => {
       <button
         onClick={e => {
           stopTime()
-          // resetAllRides()
+          resetAllRides()
         }}
         className="timer-btn"
       >

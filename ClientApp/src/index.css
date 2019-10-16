@@ -92,7 +92,6 @@ li {
 .ride-list-area {
   display: flex;
   padding-left: 0.5rem;
-  /* justify-content: center; */
 }
 .displayed-rides {
   display: flex;
@@ -231,6 +230,7 @@ li {
   .scores-area {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
